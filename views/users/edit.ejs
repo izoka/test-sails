@@ -1,0 +1,36 @@
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>Edit user</h1>
+        <form action="/membre/update/<%= user.id %>" class="form-inscription" method="POST">
+
+            <% if(flash && flash.err) { %>
+               <ul class="alert alert-success">
+                <% Object.keys(flash.err).forEach(function(error) { %>
+                   <li>
+                       <%- JSON.stringify(flash.err[error]) %>
+                   </li>
+                <% }) %>
+               </ul>
+            <% } %>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input value="<%= user.email %>" type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputTitle">Titre</label>
+                <input value="<%= user.title %>" type="text" name="title" class="form-control" id="exampleInputTitle" placeholder="titre">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputName">Name</label>
+                <input <%= user.name %> type="text" name="name" minlength="3" class="form-control" id="exampleInputName" placeholder="name">
+            </div>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>">
+        </form>
+    </div>
+</div>
